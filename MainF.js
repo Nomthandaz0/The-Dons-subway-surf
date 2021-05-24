@@ -1,8 +1,9 @@
 import *as THREE from './Libra/three.module.js';
 import * as CONTROL from './Libra/orbitcontrols.js';
 import {Ground} from './Ground.js';
+import {Wheel} from "./Wheel";
 
-let scene,camera, renderer,controls;
+let scene,camera, renderer,controls, whel;
 
 const createworld = () => {
     scene = new THREE.Scene();
@@ -24,7 +25,9 @@ const createworld = () => {
     });
 
     const surf = new Ground();
+    whel = new Wheel();
     scene.add(surf.getGround);
+    scene.add(whel.getWheel);
 }
 
 const animate = (time) => {
