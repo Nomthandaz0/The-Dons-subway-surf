@@ -1,7 +1,7 @@
 import *as THREE from './Libra/three.module.js';
 import * as CONTROL from './Libra/orbitcontrols.js';
 import {Ground} from './Ground.js';
-import {Wheel} from "./Wheel";
+import {Wheel} from './Wheel.js';
 
 let scene,camera, renderer,controls, whel;
 
@@ -28,12 +28,23 @@ const createworld = () => {
     whel = new Wheel();
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
+
+    window.addEventListener('keydown' ,(e ) => {
+        whel.bindKeyPress(e.code , true);
+    window.addEventListener('keyup',(e) =>{
+        whel.bindKeyPress(e.code , false);
+        });
+        //console.log(e)
+    });
+
+
+
 }
 
 const animate = (time) => {
-
+    whel.animateWheel(time) ;
+    //whel.getWheel.rotation.x = time/5000;
     renderer.render(scene,camera);
-
 }
 
 createworld();

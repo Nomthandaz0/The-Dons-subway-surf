@@ -4,6 +4,7 @@ class Wheel{
 
     constructor() {
         this._wheel = new THREE.Group();
+        this._KeyBind = new THREE.Group();
 
         const wheelobj = this._generateObj();
         wheelobj.scale.set(0.01,0.01,0.01);
@@ -23,6 +24,24 @@ class Wheel{
     get getWheel(){
         return this._wheel;
     }
+    bindKeyPress(KeyCode , state){
+        this._KeyBind[KeyCode]= state ;
+    }
+    animateWheel(time) {
+        const movef = this._KeyBind ['ArrowUp'];
+        const moveL = this._KeyBind['ArrowLeft'];
+        const moveR = this._KeyBind['ArrowRight'];
+        if (movef) {
+            this._wheel.position.z -=0.05;
+        }
+        if(moveL){
+            this._wheel.position.x  -=0.01;
+        }
+        if(moveR){
+            this._wheel.position.x +=0.01;
+        }
 
+
+    }
 }
 export {Wheel};
