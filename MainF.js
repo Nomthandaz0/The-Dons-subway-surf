@@ -1,9 +1,11 @@
 import *as THREE from './Libra/three.module.js';
 import * as CONTROL from './Libra/orbitcontrols.js';
 import {Ground} from './Ground.js';
-import {Wheel} from "./Wheel";
+import {Wheel} from "./Wheel.js";
+import {cube} from "./cube.js";
 
-let scene,camera, renderer,controls, whel;
+
+let scene,camera, renderer,controls, whel, obst;
 
 const createworld = () => {
     scene = new THREE.Scene();
@@ -26,8 +28,20 @@ const createworld = () => {
 
     const surf = new Ground();
     whel = new Wheel();
+    const obst = new cube();
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
+    scene.add(obst.getCube);
+
+
+    //cube obstacle
+    /*const obstacle = new Ground();
+    obst = new Cube();
+    scene.add(obstacle.getGround);
+    scene.add(obst.getCube);*/
+
+
+
 }
 
 const animate = (time) => {
