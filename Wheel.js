@@ -31,15 +31,20 @@ class Wheel{
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
+        const moveD = this._KeyBind['ArrowDown'];
         if (movef) {
             this._wheel.position.z -=0.05;
             this._camera.position.z  -=0.05;
         }
         if(moveL){
-            this._wheel.position.x  -=0.01;
+            this._wheel.position.x  -=0.05;
         }
         if(moveR){
-            this._wheel.position.x +=0.01;
+            this._wheel.position.x +=0.05;
+        }
+        if(moveD){
+            this._wheel.position.z +=0.05;
+            this._camera.position.z +=0.05;
         }
 
 
