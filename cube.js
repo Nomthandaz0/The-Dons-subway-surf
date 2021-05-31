@@ -6,10 +6,8 @@ class cube{
         this._group = new THREE.Group();
         const cub = this._generateCube();
         cub.scale.set(0.1,0.1,0.1);
-        //Ill leave it like that
         this._group.add(cub)
 
-        //cube positions
         cub.position.x += 0.1;
         cub.position.z += -0.45;
         cub.position.y -= 0.05;

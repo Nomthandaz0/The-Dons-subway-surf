@@ -15,8 +15,13 @@ class Wheel{
 
     }
     _generateObj(){
+        const texture2 = new THREE.TextureLoader().load('textures/wh.jpg');
+        texture2.rotation = THREE.Math.degToRad(10);
+        texture2.wrapS = THREE.RepeatWrapping;
+        texture2.wrapT = THREE.RepeatWrapping;
+        texture2.repeat.set(1,1);
         const geometry = new THREE.TorusGeometry( 10, 5, 16, 100 );
-        const material = new THREE.MeshNormalMaterial();
+        const material = new THREE.MeshPhongMaterial({map: texture2, side: THREE.DoubleSide});
         return new THREE.Mesh( geometry, material );
 
     }
