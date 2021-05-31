@@ -2,10 +2,10 @@ import *as THREE from './Libra/three.module.js';
 
 class Wheel{
 
-    constructor() {
+    constructor(worldCamera) {
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
-
+        this._camera =  worldCamera ;
         const wheelobj = this._generateObj();
         wheelobj.scale.set(0.01,0.01,0.01);
         wheelobj.rotation.y = Math.PI/2;
@@ -33,6 +33,7 @@ class Wheel{
         const moveR = this._KeyBind['ArrowRight'];
         if (movef) {
             this._wheel.position.z -=0.05;
+            this._camera.position.z  -=0.05;
         }
         if(moveL){
             this._wheel.position.x  -=0.01;
