@@ -2,8 +2,10 @@ import *as THREE from './Libra/three.module.js';
 import * as CONTROL from './Libra/orbitcontrols.js';
 import {Ground} from './Ground.js';
 import {Wheel} from './Wheel.js';
+import {cube} from "./cube.js";
+import {Coin} from "./Coins.js"
 
-let scene,camera, renderer,controls, whel;
+let scene,camera, renderer,controls, whel, box,coin;
 
 const createworld = () => {
     scene = new THREE.Scene();
@@ -33,8 +35,13 @@ const createworld = () => {
 
     const surf = new Ground();
     whel = new Wheel(camera);
+    box = new cube();
+    coin = new Coin();
+
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
+    scene.add(box.getCube);
+    scene.add(coin.getCoin);
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
         whel.bindKeyPress(e.code, true);

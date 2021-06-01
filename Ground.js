@@ -14,8 +14,6 @@ class Ground {
 
     }
 
-
-
     _generateGround(){
         //road texture
         const texture = new THREE.TextureLoader().load('textures/road_texture.jpg');
@@ -31,6 +29,9 @@ class Ground {
 
     get getGround(){
         return this._world;
+    }
+    get getHeight(){
+        return 10000;
     }
 }
 export {Ground}
