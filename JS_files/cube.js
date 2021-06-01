@@ -1,4 +1,4 @@
-import *as THREE from './Libra/three.module.js';
+import *as THREE from '../Libra/three.module.js';
 
 class cube{
 
@@ -8,11 +8,13 @@ class cube{
 
         const cub = this._generateCube();
         cub.scale.set(0.1, 0.1, 0.1);
-        this._group.add(cub)
 
         cub.position.x += 0.3;
         cub.position.z += -0.45-50*i;
         cub.position.y -= 0.10;
+
+        this._group.add(cub);
+
        }
 
 
@@ -25,6 +27,7 @@ class cube{
             cub.position.x -= 0.3;
             cub.position.z += -0.45-25*k;
             cub.position.y -= 0.10;
+            this._group.add(cub);
         }
     }
 

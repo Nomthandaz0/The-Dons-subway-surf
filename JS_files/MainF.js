@@ -1,22 +1,16 @@
-import *as THREE from './Libra/three.module.js';
-import * as CONTROL from './Libra/orbitcontrols.js';
+import *as THREE from '../Libra/three.module.js';
+import * as CONTROL from '../Libra/OrbitControls.js';
 import {Ground} from './Ground.js';
 import {Wheel} from './Wheel.js';
+import {Coin} from "./Coins.js";
 import {cube} from "./cube.js";
-import {Coin} from "./Coins.js"
 
-let scene,camera, renderer,controls, whel, box,coin;
+let scene,camera, renderer,controls, whel,coin,box;
 
 const createworld = () => {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.z = 1;
-
-    const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-    scene.add( light );
-
-    const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-    scene.add( directionalLight );
 
     renderer = new THREE.WebGLRenderer({antialias: true});                                              //to enable render antialias set to true
 
@@ -35,13 +29,13 @@ const createworld = () => {
 
     const surf = new Ground();
     whel = new Wheel(camera);
-    box = new cube();
     coin = new Coin();
+    box = new cube();
 
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
-    scene.add(box.getCube);
     scene.add(coin.getCoin);
+    scene.add(box.getCube);
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
         whel.bindKeyPress(e.code, true);

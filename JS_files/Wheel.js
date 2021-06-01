@@ -1,4 +1,4 @@
-import *as THREE from './Libra/three.module.js';
+import *as THREE from '../Libra/three.module.js';
 
 class Wheel{
 
@@ -21,7 +21,7 @@ class Wheel{
         texture2.wrapT = THREE.RepeatWrapping;
         texture2.repeat.set(1,1);
         const geometry = new THREE.TorusGeometry( 10, 5, 16, 100 );
-        const material = new THREE.MeshPhongMaterial({map: texture2, side: THREE.DoubleSide});
+        const material = new THREE.MeshBasicMaterial({map: texture2, side: THREE.DoubleSide});
         return new THREE.Mesh( geometry, material );
 
     }
