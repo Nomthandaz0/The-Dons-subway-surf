@@ -36,7 +36,7 @@ class Wheel{
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
-        const moveD = this._KeyBind['ArrowDown'];
+        //const moveD = this._KeyBind['ArrowDown'];
         if (movef) {
             this._wheel.position.z -=0.05;
             this._camera.position.z  -=0.05;
@@ -47,12 +47,16 @@ class Wheel{
         if(moveR){
             this._wheel.position.x +=0.05;
         }
-        if(moveD){
+        /*if(moveD){
             this._wheel.position.z +=0.05;
             this._camera.position.z +=0.05;
-        }
-
+        }*/
+        this._wheel.position.z -= 0.05;
+        this._camera.position.z -= 0.05;
+        this._camera.lookAt(this._wheel.position);
 
     }
+
+    onCollision(type){}
 }
 export {Wheel};

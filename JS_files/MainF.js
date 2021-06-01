@@ -34,7 +34,7 @@ const createworld = () => {
 
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
-    scene.add(coin.getCoin);
+    //scene.add(coin.getCoin);
     scene.add(box.getCube);
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
