@@ -29,7 +29,7 @@ class cube{
             cub.position.y -= 0.10;
             this._group.add(cub);
         }
-         
+
     }
 
     _generateCube(){
