@@ -19,6 +19,7 @@ class Coin{
                 this._group.add(coin);
             }
 
+
     }
 
     _generateCoin(){
