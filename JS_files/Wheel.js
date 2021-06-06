@@ -58,8 +58,8 @@ class Wheel{
         }
 
 
-        //this._wheel.position.z -= 0.1;
-        //this._camera.position.z -= 0.1;
+        this._wheel.position.z -= 0.1;
+        this._camera.position.z -= 0.1;
         this._camera.lookAt(this._wheel.position);
         const pos = 0.001*Math.sin(time/100);
         this._wheel.position.y +=pos;
