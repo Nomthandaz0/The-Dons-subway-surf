@@ -7,9 +7,9 @@ class Wheel{
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
         const wheelobj = this._generateObj();
-        wheelobj.scale.set(0.01,0.01,0.01);
+        wheelobj.scale.set(0.02,0.02,0.02);
         wheelobj.rotation.y = Math.PI/2;
-        wheelobj.position.y -=0.05;
+        wheelobj.position.y +=0.1;
 
         this._wheel.add(wheelobj);
 
@@ -36,7 +36,7 @@ class Wheel{
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
-        //const moveD = this._KeyBind['ArrowDown'];
+       // const moveD = this._KeyBind['ArrowDown'];
         if (movef) {
             this._wheel.position.z -=0.05;
             this._camera.position.z  -=0.05;
@@ -51,9 +51,11 @@ class Wheel{
             this._wheel.position.z +=0.05;
             this._camera.position.z +=0.05;
         }*/
-        this._wheel.position.z -= 0.05;
-        this._camera.position.z -= 0.05;
+        this._wheel.position.z -= 0.1;
+        this._camera.position.z -= 0.1;
         this._camera.lookAt(this._wheel.position);
+        const pos = 0.001*Math.sin(time/100);
+        this._wheel.position.y +=pos;
 
     }
 

@@ -46,9 +46,10 @@ const createworld = () => {
 };
 
 const animate = (time) => {
+    controls.update();
     whel.animateWheel(time);
     renderer.render(scene,camera);
-    coin.getCoin.rotation.z = time/4000;
+    coin.getCoin.rotation.z = time/2000;
 
 }
 
