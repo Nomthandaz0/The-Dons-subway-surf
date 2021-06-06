@@ -7,11 +7,13 @@ class Wheel{
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
         const wheelobj = this._generateObj();
-        wheelobj.scale.set(0.02,0.02,0.02);
+        wheelobj.scale.set(0.01,0.01,0.01);
         wheelobj.rotation.y = Math.PI/2;
-        wheelobj.position.y +=0.1;
+        wheelobj.position.y -=0.05;
 
         this._wheel.add(wheelobj);
+        this._wheel.castShadow = true;
+        this._wheel.receiveShadow = true;
 
     }
     _generateObj(){
@@ -21,7 +23,7 @@ class Wheel{
         texture2.wrapT = THREE.RepeatWrapping;
         texture2.repeat.set(1,1);
         const geometry = new THREE.TorusGeometry( 10, 5, 16, 100 );
-        const material = new THREE.MeshBasicMaterial({map: texture2, side: THREE.DoubleSide});
+        const material = new THREE.MeshPhongMaterial({map: texture2, side: THREE.DoubleSide});
         return new THREE.Mesh( geometry, material );
 
     }
@@ -54,7 +56,7 @@ class Wheel{
         this._wheel.position.z -= 0.1;
         this._camera.position.z -= 0.1;
         this._camera.lookAt(this._wheel.position);
-        const pos = 0.001*Math.sin(time/100);
+        const pos = 0.005*Math.sin(time/100);
         this._wheel.position.y +=pos;
 
     }

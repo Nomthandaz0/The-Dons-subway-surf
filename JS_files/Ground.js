@@ -21,8 +21,9 @@ class Ground {
         texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(3,3000);
         const geometry = new THREE.PlaneGeometry( 1, 10000, 15 );
-        const material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+        const material = new THREE.MeshPhongMaterial( {map: texture, side: THREE.DoubleSide} );
         const ground = new THREE.Mesh( geometry, material );
+        ground.receiveShadow = true;
         ground.rotation.x = Math.PI / 2;
         ground.position.y = -0.2
 

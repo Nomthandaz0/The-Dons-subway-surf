@@ -14,6 +14,8 @@ class cube{
         cub.position.y -= 0.10;
 
         this._group.add(cub);
+        this._group.castShadow = true;
+        this._group.receiveShadow = true
 
        }
 
@@ -38,7 +40,7 @@ class cube{
         texture3.wrapT = THREE.RepeatWrapping;
         texture3.repeat.set(1,1);
         const geometry = new THREE.BoxGeometry( 2, 2, 2 );
-        const material = new THREE.MeshBasicMaterial( {map: texture3, side: THREE.DoubleSide} );
+        const material = new THREE.MeshPhongMaterial( {map: texture3, side: THREE.DoubleSide} );
         return new THREE.Mesh( geometry, material );
     }
 

@@ -17,6 +17,8 @@ class Coin{
                 }
 
                 this._group.add(coin);
+                this._group.castShadow = true;
+                this._group.receiveShadow = true;
             }
 
 
@@ -25,7 +27,7 @@ class Coin{
     _generateCoin(){
 
         const geometry = new THREE.CylinderGeometry(2,2,1);
-        const material = new THREE.MeshBasicMaterial({color: 0xffff00} );
+        const material = new THREE.MeshPhongMaterial({color: 0xffff00} );
         return new THREE.Mesh( geometry, material );
     }
 
