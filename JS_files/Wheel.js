@@ -6,12 +6,12 @@ class Wheel{
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
-        const wheelobj = this._generateObj();
-        wheelobj.scale.set(0.01,0.01,0.01);
-        wheelobj.rotation.y = Math.PI/2;
-        wheelobj.position.y -=0.05;
+        const wheelObj = this._generateObj();
+        wheelObj.scale.set(0.01,0.01,0.01);
+        wheelObj.rotation.y = Math.PI/2;
+        wheelObj.position.y +=0.05;
 
-        this._wheel.add(wheelobj);
+        this._wheel.add(wheelObj);
         this._wheel.castShadow = true;
         this._wheel.receiveShadow = true;
 
@@ -24,8 +24,11 @@ class Wheel{
         texture2.repeat.set(1,1);
         const geometry = new THREE.TorusGeometry( 10, 5, 16, 100 );
         const material = new THREE.MeshPhongMaterial({map: texture2, side: THREE.DoubleSide});
-        return new THREE.Mesh( geometry, material );
+        const wheel = new THREE.Mesh( geometry, material );
+        wheel.castShadow =true;
+        wheel.receiveShadow =true;
 
+        return wheel;
     }
 
     get getWheel(){
@@ -38,8 +41,8 @@ class Wheel{
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
-       // const moveD = this._KeyBind['ArrowDown'];
-        if (movef) {
+        const moved = this._KeyBind ['ArrowDown'];
+         if (movef) {
             this._wheel.position.z -=0.05;
             this._camera.position.z  -=0.05;
         }
@@ -49,14 +52,16 @@ class Wheel{
         if(moveR){
             this._wheel.position.x +=0.05;
         }
-        /*if(moveD){
+        if (moved) {
             this._wheel.position.z +=0.05;
-            this._camera.position.z +=0.05;
-        }*/
-        this._wheel.position.z -= 0.1;
-        this._camera.position.z -= 0.1;
+            this._camera.position.z  +=0.05;
+        }
+
+
+        //this._wheel.position.z -= 0.1;
+        //this._camera.position.z -= 0.1;
         this._camera.lookAt(this._wheel.position);
-        const pos = 0.005*Math.sin(time/100);
+        const pos = 0.001*Math.sin(time/100);
         this._wheel.position.y +=pos;
 
     }

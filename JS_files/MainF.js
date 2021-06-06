@@ -9,11 +9,13 @@ let scene,camera, renderer,controls, whel,coin,box;
 
 const createworld = () => {
     scene = new THREE.Scene();
-    //initSkybox();
+    //Skybox();
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.z = 1;
 
     renderer = new THREE.WebGLRenderer({antialias: true});                                              //to enable render antialias set to true
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setAnimationLoop(animate);
@@ -49,31 +51,33 @@ const createworld = () => {
 
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );
-    light.position.set(0,15,-20);
+    light.position.set(0,200,0);
     scene.add( light );
 
-    const shadowBound = 500;
+    const shadowBound = 20;
     const dirLight = new THREE.DirectionalLight( 0xffffff );
+    dirLight.position.set(0,20,-25);
+
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 4096;
     dirLight.shadow.mapSize.height = 4096;
     dirLight.shadow.camera.top = shadowBound;
-    dirLight.shadow.camera.bottom = shadowBound;
-    dirLight.shadow.camera.left = shadowBound;
+    dirLight.shadow.camera.bottom = -shadowBound;
+    dirLight.shadow.camera.left = -shadowBound;
     dirLight.shadow.camera.right = shadowBound;
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 1000;
+
     scene.add( dirLight );
 
     const helper = new THREE.DirectionalLightHelper( dirLight,5);
     scene.add( helper );
-    const shadowhelper = new THREE.CameraHelper( dirLight.shadow.camera );
-    scene.add( shadowhelper );
-
+    const shadowHelper = new THREE.CameraHelper( dirLight.shadow.camera );
+    scene.add( shadowHelper );
 
 }
 
-const initSkybox = () =>{
+const Skybox = () =>{
     const loader = new THREE.CubeTextureLoader();
     scene.background = loader.load(
         [

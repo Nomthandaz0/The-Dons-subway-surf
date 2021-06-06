@@ -28,7 +28,11 @@ class Coin{
 
         const geometry = new THREE.CylinderGeometry(2,2,1);
         const material = new THREE.MeshPhongMaterial({color: 0xffff00} );
-        return new THREE.Mesh( geometry, material );
+        const coin = new THREE.Mesh( geometry, material );
+        coin.castShadow = true;
+        coin.receiveShadow = true;
+
+        return coin;
     }
 
     get getCoin(){
