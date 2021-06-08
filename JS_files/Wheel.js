@@ -1,4 +1,5 @@
 import *as THREE from '../Libra/three.module.js';
+//import {CollisionHandler} from "./CollisionHandler.js";
 
 class Wheel{
 
@@ -10,6 +11,8 @@ class Wheel{
         wheelObj.scale.set(0.01,0.01,0.01);
         wheelObj.rotation.y = Math.PI/2;
         wheelObj.position.y +=0.05;
+        this._forwardSpeed = 0.05;
+
 
         this._wheel.add(wheelObj);
         this._wheel.castShadow = true;
@@ -53,8 +56,8 @@ class Wheel{
             this._wheel.position.x +=0.05;
         }
         if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+            this._wheel.position.z +=this._forwardSpeed;
+            this._camera.position.z  +=this._forwardSpeed;
         }
 
 
@@ -66,6 +69,14 @@ class Wheel{
 
     }
 
-    onCollision(type){}
+    /*onCollision(type){
+    if (type === CollisionHandler.obstacle){
+        this._forwardSpeed = 0;
+        console.log('collison occured');
+    }
+    }*/
+
+
+
 }
 export {Wheel};

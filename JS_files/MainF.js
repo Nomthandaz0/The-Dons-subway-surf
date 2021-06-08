@@ -4,8 +4,22 @@ import {Ground} from './Ground.js';
 import {Wheel} from './Wheel.js';
 import {Coin} from "./Coins.js";
 import {cube} from "./cube.js";
+//import {CollisionHandler} from "./CollisionHandler.js";
 
-let scene,camera, renderer,controls, whel,coin,box;
+
+let scene,camera, renderer,controls, whel,coin,box, gameIsPaused = true;
+
+const level1Button = document.getElementById("level1");
+level1Button.addEventListener('click',() => {
+
+    const menus = document.getElementsByClassName('menu');
+    for(let i = 0; i<menus.length; i++){
+        const menu = menus[i];
+        menu.style.display = 'none';
+    }
+    gameIsPaused = false;
+
+})
 
 const createworld = () => {
     scene = new THREE.Scene();
@@ -35,19 +49,33 @@ const createworld = () => {
     whel = new Wheel(camera);
     coin = new Coin();
     box = new cube();
+    //this._collisonHandler = new CollisionHandler();
 
     scene.add(surf.getGround);
     scene.add(whel.getWheel);
     scene.add(coin.getCoin);
     scene.add(box.getCube);
+    //this._collisionHandler.addCollidableObject(cube, CollisionHandler.obstacle);
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
+        if(e.code === 'Escape') pauseGame();
         whel.bindKeyPress(e.code, true);
+
     });
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
        whel.bindKeyPress(e.code,false);
     });
+
 };
+
+const pauseGame = () =>{
+    gameIsPaused = true;
+    const menus = document.getElementsByClassName('menu');
+    for(let i = 0; i<menus.length; i++){
+        const menu = menus[i];
+        menu.style.display = 'block';
+    }
+}
 
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );
@@ -92,10 +120,16 @@ const Skybox = () =>{
 }
 
 const animate = (time) => {
+    renderer.render(scene,camera);
+    if(gameIsPaused) return;
     controls.update();
     whel.animateWheel(time);
-    renderer.render(scene,camera);
+
     coin.getCoin.rotation.z = time/2000;
+
+
+    //this._collisonHandler.detectCollision(this.getWheel);
+
 
 }
 
