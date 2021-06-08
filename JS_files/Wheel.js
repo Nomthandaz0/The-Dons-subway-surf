@@ -43,8 +43,8 @@ class Wheel{
         const moveR = this._KeyBind['ArrowRight'];
         const moved = this._KeyBind ['ArrowDown'];
          if (movef) {
-            this._wheel.position.z -=0.05;
-            this._camera.position.z  -=0.05;
+            this._wheel.position.y +=0.05;
+            //this._camera.position.z  -=0.05;
         }
         if(moveL){
             this._wheel.position.x  -=0.05;
@@ -53,8 +53,8 @@ class Wheel{
             this._wheel.position.x +=0.05;
         }
         if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+            this._wheel.position.y -=0.05;
+           // this._camera.position.z  +=0.05;
         }
 
 
