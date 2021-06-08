@@ -6,10 +6,13 @@ class Wheel{
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
+        this._camera.position.set(0.01806434562578374, 0.32850558343910313, 0.9443292651752567);
+
+
         const wheelObj = this._generateObj();
         wheelObj.scale.set(0.01,0.01,0.01);
         wheelObj.rotation.y = Math.PI/2;
-        wheelObj.position.y +=0.05;
+        wheelObj.position.y -=0.04;
 
         this._wheel.add(wheelObj);
         this._wheel.castShadow = true;
@@ -63,8 +66,7 @@ class Wheel{
         this._camera.lookAt(this._wheel.position);
         const pos = 0.001*Math.sin(time/100);
         this._wheel.position.y +=pos;
-
-    }
+     }
 
     onCollision(type){}
 }

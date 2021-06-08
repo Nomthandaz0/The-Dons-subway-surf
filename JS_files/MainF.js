@@ -1,15 +1,12 @@
 import *as THREE from '../Libra/three.module.js';
 import * as CONTROL from '../Libra/OrbitControls.js';
 import {Ground} from './Ground.js';
-import {Wheel} from './Wheel.js';
-import {Coin} from "./Coins.js";
-import {cube} from "./cube.js";
 
-let scene,camera, renderer,controls, whel,coin,box;
+let scene,camera, renderer,controls, ground;
 
 const createworld = () => {
     scene = new THREE.Scene();
-    //Skybox();
+    Skybox();
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.z = 1;
 
@@ -24,6 +21,10 @@ const createworld = () => {
     initLights();
     controls = new CONTROL.OrbitControls(camera, renderer.domElement);
 
+    ground = new Ground(camera);
+    scene.add(ground.getGround);
+
+
     window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -31,21 +32,11 @@ const createworld = () => {
     });
 
 
-    const surf = new Ground();
-    whel = new Wheel(camera);
-    coin = new Coin();
-    box = new cube();
-
-    scene.add(surf.getGround);
-    scene.add(whel.getWheel);
-    scene.add(coin.getCoin);
-    scene.add(box.getCube);
-
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
-        whel.bindKeyPress(e.code, true);
+         ground.bindKey(e.code, true);
     });
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
-       whel.bindKeyPress(e.code,false);
+        ground.bindKey(e.code, false);
     });
 };
 
@@ -77,25 +68,24 @@ const initLights = () =>{
 
 }
 
-const Skybox = () =>{
+const Skybox = () => {
     const loader = new THREE.CubeTextureLoader();
     scene.background = loader.load(
         [
-            "SkyBox/nx.png",
-            "SkyBox/ny.png",
-            "SkyBox/nz.png",
-            "SkyBox/px.png",
-            "SkyBox/py.png",
-            "SkyBox/pz.png",
+            './SkyBox/nx.png',
+            './SkyBox/ny.png',
+            './SkyBox/nz.png',
+            './SkyBox/px.png',
+            './SkyBox/py.png',
+            './SkyBox/pz.png'
         ]
     );
 }
 
 const animate = (time) => {
-    controls.update();
-    whel.animateWheel(time);
     renderer.render(scene,camera);
-    coin.getCoin.rotation.z = time/2000;
+    controls.update();
+    ground.animateGround(time);
 
 }
 

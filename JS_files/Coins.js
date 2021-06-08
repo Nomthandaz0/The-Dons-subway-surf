@@ -4,6 +4,7 @@ class Coin{
 
     constructor() {
         this._group = new THREE.Group();
+
         let znew = -30;
              for (let i = 1; i < 10000; i++) {
 
@@ -20,7 +21,6 @@ class Coin{
                 this._group.castShadow = true;
                 this._group.receiveShadow = true;
             }
-
 
     }
 

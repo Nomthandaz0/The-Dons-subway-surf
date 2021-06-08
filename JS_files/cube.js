@@ -4,6 +4,7 @@ class cube{
 
     constructor() {
         this._group = new THREE.Group();
+
         for (let i=0; i<100; i++) {
 
         const cub = this._generateCube();
@@ -18,7 +19,6 @@ class cube{
         this._group.receiveShadow = true
 
        }
-
 
         for (let k=1; k<100; k++) {
 
