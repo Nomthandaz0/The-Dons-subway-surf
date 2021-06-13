@@ -67,7 +67,7 @@ const createworld = () => {
     });
 
 };
-
+//changes here
 const pauseGame = () =>{
     gameIsPaused = true;
     const menus = document.getElementsByClassName('menu');
