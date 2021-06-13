@@ -19,7 +19,7 @@ class Ground {
         this._world.add(this._coin.getCoin);
         this._world.add(this._cube.getCube);
 
-       // this._buildStage(SceneF);
+        // this._buildStage(SceneF);
     }
 
     _generateGround(){

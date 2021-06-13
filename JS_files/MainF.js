@@ -1,13 +1,8 @@
 import *as THREE from '../Libra/three.module.js';
 import * as CONTROL from '../Libra/OrbitControls.js';
 import {Ground} from './Ground.js';
-import {Wheel} from './Wheel.js';
-import {Coin} from "./Coins.js";
-import {cube} from "./cube.js";
-//import {CollisionHandler} from "./CollisionHandler.js";
 
-
-let scene,camera, renderer,controls, whel,coin,box, gameIsPaused = true;
+let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
 level1Button.addEventListener('click',() => {
@@ -19,11 +14,13 @@ level1Button.addEventListener('click',() => {
     }
     gameIsPaused = false;
 
-})
+});
+
 
 const createworld = () => {
+
     scene = new THREE.Scene();
-    //Skybox();
+    Skybox();
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.z = 1;
 
@@ -38,6 +35,10 @@ const createworld = () => {
     initLights();
     controls = new CONTROL.OrbitControls(camera, renderer.domElement);
 
+    ground = new Ground(camera);
+    scene.add(ground.getGround);
+
+
     window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -45,29 +46,15 @@ const createworld = () => {
     });
 
 
-    const surf = new Ground();
-    whel = new Wheel(camera);
-    coin = new Coin();
-    box = new cube();
-    //this._collisonHandler = new CollisionHandler();
-
-    scene.add(surf.getGround);
-    scene.add(whel.getWheel);
-    scene.add(coin.getCoin);
-    scene.add(box.getCube);
-    //this._collisionHandler.addCollidableObject(cube, CollisionHandler.obstacle);
-
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
         if(e.code === 'Escape') pauseGame();
-        whel.bindKeyPress(e.code, true);
-
+        ground.bindKey(e.code, true);
     });
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
-       whel.bindKeyPress(e.code,false);
+        ground.bindKey(e.code, false);
     });
-
 };
-//changes here
+
 const pauseGame = () =>{
     gameIsPaused = true;
     const menus = document.getElementsByClassName('menu');
@@ -76,6 +63,7 @@ const pauseGame = () =>{
         menu.style.display = 'block';
     }
 }
+
 
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );
@@ -105,16 +93,16 @@ const initLights = () =>{
 
 }
 
-const Skybox = () =>{
+const Skybox = () => {
     const loader = new THREE.CubeTextureLoader();
     scene.background = loader.load(
         [
-            "SkyBox/nx.png",
-            "SkyBox/ny.png",
-            "SkyBox/nz.png",
-            "SkyBox/px.png",
-            "SkyBox/py.png",
-            "SkyBox/pz.png",
+            './SkyBox/nx.png',
+            './SkyBox/ny.png',
+            './SkyBox/nz.png',
+            './SkyBox/px.png',
+            './SkyBox/py.png',
+            './SkyBox/pz.png'
         ]
     );
 }
@@ -123,13 +111,7 @@ const animate = (time) => {
     renderer.render(scene,camera);
     if(gameIsPaused) return;
     controls.update();
-    whel.animateWheel(time);
-
-    coin.getCoin.rotation.z = time/2000;
-
-
-    //this._collisonHandler.detectCollision(this.getWheel);
-
+    ground.animateGround(time);
 
 }
 
