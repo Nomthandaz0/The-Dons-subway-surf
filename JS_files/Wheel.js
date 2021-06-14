@@ -41,23 +41,23 @@ class Wheel{
         this._KeyBind[KeyCode]= state ;
     }
     animateWheel(time) {
-        const movef = this._KeyBind ['ArrowUp'];
+        const moveU = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
-        const moved = this._KeyBind ['ArrowDown'];
-         if (movef) {
-            this._wheel.position.z -=0.05;
-            this._camera.position.z  -=0.05;
+        const moveD = this._KeyBind ['ArrowDown'];
+         if (moveU) {
+            this._wheel.position.y +=0.025;
+
         }
         if(moveL){
-            this._wheel.position.x  -=0.05;
+            this._wheel.position.x  -=0.02;
         }
         if(moveR){
-            this._wheel.position.x +=0.05;
+            this._wheel.position.x +=0.02;
         }
-        if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+        if (moveD) {
+            this._wheel.position.y -=0.025;
+
         }
 
 
@@ -65,7 +65,7 @@ class Wheel{
         this._camera.position.z -= 0.1;
         this._camera.lookAt(this._wheel.position);
         const pos = 0.001*Math.sin(time/100);
-        this._wheel.position.y +=pos;
+       // this._wheel.position.y +=pos;
      }
 
     onCollision(type){}
