@@ -3,6 +3,8 @@ import {cube} from './cube.js';
 import {Coin} from './Coins.js';
 import {SceneD} from "./SceneD.js";
 import {Wheel} from "./Wheel.js";
+import {CollisionHandler} from "./CollisionHandler.js";
+
 
 class Ground {
     constructor(camera) {
@@ -11,6 +13,7 @@ class Ground {
     _Initialize(camera ,SceneF){
         this._world = new THREE.Group();
         this._wheel = new Wheel(camera);
+        this._collisionHandler = new CollisionHandler();
         this._coin = new Coin();
         this._cube = new cube();
         const geneGround = this._generateGround();
@@ -18,6 +21,19 @@ class Ground {
         this._world.add(this._wheel.getWheel);
         this._world.add(this._coin.getCoin);
         this._world.add(this._cube.getCube);
+
+
+        const cubeGroup = this._cube.getCube;
+        for(let i=0; i<cubeGroup.children.length; i++){
+            const cubeChild = cubeGroup.children[i];
+            this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
+        }
+
+        /*const coinGroup = this._coin.getCoin;
+        for(let i=0; i<coinGroup.children.length; i++){
+            const coinChild = coinGroup.children[i];
+            this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
+        }*/
 
         // this._buildStage(SceneF);
     }
@@ -89,6 +105,8 @@ class Ground {
 
     animateGround (time) {
         this._wheel.animateWheel(time);
+        this._collisionHandler.detectCollision(this._wheel);
+
     }
 }
 export {Ground}

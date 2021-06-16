@@ -1,10 +1,11 @@
 import *as THREE from '../Libra/three.module.js';
+ import {CollisionHandler} from "./CollisionHandler.js";
+
 
 class cube{
 
     constructor() {
         this._group = new THREE.Group();
-
         for (let i=0; i<100; i++) {
 
         const cub = this._generateCube();
@@ -47,6 +48,7 @@ class cube{
     get getCube(){
         return this._group;
     }
+
 
 }
 export {cube};

@@ -1,11 +1,17 @@
 import *as THREE from '../Libra/three.module.js';
+import {CollisionHandler} from "./CollisionHandler.js";
 
 class Wheel{
 
     constructor(worldCamera) {
+        this.position = new THREE.Vector3(0,0,0);
+        this.v_ = 0.0;
+        let score = 0.0;
+
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
+        this._fspeed = 0.1;
         this._camera.position.set(0.01806434562578374, 0.32850558343910313, 0.9443292651752567);
 
 
@@ -41,6 +47,8 @@ class Wheel{
         this._KeyBind[KeyCode]= state ;
     }
     animateWheel(time) {
+
+        const counter = 0.5;
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
@@ -56,18 +64,36 @@ class Wheel{
             this._wheel.position.x +=0.05;
         }
         if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+            //this._wheel.position.z +=0.05;
+            //this._camera.position.z  +=0.05;
+           /* const poss = counter*Math.sin(time/10000);
+            this._wheel.position.y +=poss;
+            this._camera.position.y +=poss;
+            this._counter += 0.3;
+            if(this._wheel.position.y > 0.6){
+                console.log(this._wheel.position.y)
+                this._wheel.position.y -=0.5;
+                this._camera.position.y -=0.5;
+            }*/
         }
 
 
-        this._wheel.position.z -= 0.1;
-        this._camera.position.z -= 0.1;
+        this._wheel.position.z -= this._fspeed;
+        this._camera.position.z -= this._fspeed;
         this._camera.lookAt(this._wheel.position);
         const pos = 0.001*Math.sin(time/100);
         this._wheel.position.y +=pos;
      }
 
-    onCollision(type){}
+     onCollision(type){
+        if (type === CollisionHandler.obstacle){
+            this._fspeed = 0;
+        }
+       /* if (type === CollisionHandler.reward){
+            this.score = this.score +1;
+            console.log(this.score);
+            this._fspeed = 0.1;
+        }*/
+     }
 }
 export {Wheel};
