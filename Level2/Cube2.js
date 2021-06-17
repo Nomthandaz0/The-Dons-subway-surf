@@ -1,38 +1,24 @@
 import *as THREE from '../Libra/three.module.js';
- import {CollisionHandler} from "./CollisionHandler.js";
 
-
-class cube{
+class Cube2{
 
     constructor() {
         this._group = new THREE.Group();
 
-        /*const cub = this._generateCube();
-        cub.scale.set(0.12, 0.2, 0.12);
-
-        cub.position.x += 0.3;
-        cub.position.z += -0.45;
-        cub.position.y -= 0.10;
-
-        this._group.add(cub);
-        this._group.castShadow = true;
-        this._group.receiveShadow = true*/
-
-
         for (let i=0; i<100; i++) {
 
-        const cub = this._generateCube();
-        cub.scale.set(0.1, 0.1, 0.1);
+            const cub = this._generateCube();
+            cub.scale.set(0.1, 0.1, 0.1);
 
-        cub.position.x += 0.3;
-        cub.position.z += -0.45-50*i;
-        cub.position.y -= 0.10;
+            cub.position.x += 0.3;
+            cub.position.z += -0.45-50*i;
+            cub.position.y -= 0.10;
 
-        this._group.add(cub);
-        this._group.castShadow = true;
-        this._group.receiveShadow = true
+            this._group.add(cub);
+            this._group.castShadow = true;
+            this._group.receiveShadow = true
 
-       }
+        }
 
         for (let k=1; k<100; k++) {
 
@@ -58,10 +44,10 @@ class cube{
         return new THREE.Mesh( geometry, material );
     }
 
-    get getCube(){
+    get getCube2(){
         return this._group;
     }
 
 
 }
-export {cube};
+export {Cube2};

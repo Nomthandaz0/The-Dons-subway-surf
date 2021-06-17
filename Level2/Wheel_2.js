@@ -1,12 +1,9 @@
 import *as THREE from '../Libra/three.module.js';
-import {CollisionHandler} from "./CollisionHandler.js";
+import {CollisionHandler} from "../JS_files/CollisionHandler.js";
 
-class Wheel{
+class Wheel_2{
 
     constructor(worldCamera) {
-        this.position = new THREE.Vector3(0,0,0);
-        this.v_ = 0.0;
-        this.score = 0;
 
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
@@ -40,13 +37,13 @@ class Wheel{
         return wheel;
     }
 
-    get getWheel(){
+    get getWheel2(){
         return this._wheel;
     }
-    bindKeyPress(KeyCode , state){
+    bindKeyPress2(KeyCode , state){
         this._KeyBind[KeyCode]= state ;
     }
-    animateWheel(time) {
+    animateWheel2(time) {
 
         const counter = 0.5;
         const movef = this._KeyBind ['ArrowUp'];
@@ -88,12 +85,12 @@ class Wheel{
     onCollision(type){
         if (type === CollisionHandler.obstacle){
             this._fspeed = 0;
-         }
-        /*if (type === CollisionHandler.reward){
-             this.score = this.score +1;
-             console.log(this.score);
-             this._fspeed = 0.1;
-        }*/
+        }
+
+        if (type === CollisionHandler.reward){
+            console.log();
+            this._fspeed = 0.1;
+        }
     }
 }
-export {Wheel};
+export {Wheel_2};
