@@ -1,26 +1,26 @@
 import *as THREE from '../Libra/three.module.js';
 
-class Coin{
+class Coins_2{
 
     constructor() {
         this._group = new THREE.Group();
 
         let znew = -30;
-             for (let i = 1; i < 10000; i++) {
+        for (let i = 1; i < 10000; i++) {
 
-                const coin = this._generateCoin();
-                coin.scale.set(0.03, 0.03, 0.03);
-                coin.rotation.z = Math.PI / 2;
-                coin.position.z += -0.5 - i;
+            const coin = this._generateCoin();
+            coin.scale.set(0.03, 0.03, 0.03);
+            coin.rotation.z = Math.PI / 2;
+            coin.position.z += -0.5 - i;
 
-                if(i % 7 == 0){
-                    i-=znew;
-                }
-
-                this._group.add(coin);
-                this._group.castShadow = true;
-                this._group.receiveShadow = true;
+            if(i % 7 == 0){
+                i-=znew;
             }
+
+            this._group.add(coin);
+            this._group.castShadow = true;
+            this._group.receiveShadow = true;
+        }
 
     }
 
@@ -35,9 +35,9 @@ class Coin{
         return coin;
     }
 
-    get getCoin(){
+    get getCoin2(){
         return this._group;
     }
 
 }
-export {Coin};
+export {Coins_2};

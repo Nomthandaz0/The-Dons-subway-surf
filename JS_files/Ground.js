@@ -1,6 +1,6 @@
 import *as THREE from '../Libra/three.module.js';
 import {cube} from './cube.js';
-import {Coin} from './Coins.js';
+import {Coin} from './Coin.js';
 import {SceneD} from "./SceneD.js";
 import {Wheel} from "./Wheel.js";
 import {CollisionHandler} from "./CollisionHandler.js";
@@ -34,7 +34,6 @@ class Ground {
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
         }*/
-
         // this._buildStage(SceneF);
     }
 
@@ -54,45 +53,50 @@ class Ground {
         return ground;
     }
 
-    /*_buildStage(SceneF) {
 
-        let zPos = -0.5;
-        let zPos2 = -0.5;
+   /* _buildStage(SceneF) {
 
-        for (let i = 0; i < SceneF.length; i++) {  //6
-            const rowD = SceneF[i];
-            let xPos = 0.3;
-            let xPos2 = 0.3;
+        for(let r=0; r<10; r++ ) {
+            let zPos = -0.5;
+            let zPos2 = -0.5;
+
+            for (let i = 0; i < SceneF.length; i++) {  //6
+                const rowD = SceneF[i];
+                let xPos = 0.3;
+                let xPos2 = 0.3;
 
 
-            for (let k = 0; k < rowD.length; k++) {
-                const desc = rowD[k];
+                for (let k = 0; k < rowD.length; k++) {
+                    const desc = rowD[k];
 
-                switch (desc){
-                    case 1:
-                        const coin = new Coin().getCoin;
-                        coin.position.x = xPos;
-                        coin.position.z = zPos;
-                        this._world.add(coin);
-                        break;
+                    switch (desc) {
+                        case 1:
+                            const coin = new Coin().getCoin;
+                            coin.position.x = xPos;
+                            coin.position.z = zPos;
+                            this._world.add(coin);
+                            this._collisionHandler.addCollidableObject(coin, CollisionHandler.reward);
+                            break;
 
-                    case 2:
-                        const cube = new cube().getCube;
-                        cube.position.x = xPos2;
-                        cube.position.z = zPos2;
-                        this._world.add(cube);
-                        break;
+                        case 2:
+                            const cubes = new cube().getCube;
+                            cubes.position.x = xPos2;
+                            cubes.position.z = zPos2;
+                            this._world.add(cubes);
+                            this._collisionHandler.addCollidableObject(cubes, CollisionHandler.obstacle);
+                            break;
+                    }
+
+                    xPos -= 0.3;
+                    xPos2 -= 0.3;
+
                 }
-                xPos -=0.3;
-                xPos2 -=0.3;
+
+                zPos -= 0.5;
+                zPos2 -= 0.5;
 
             }
-
-            zPos -=1;
-            zPos2 -=1;
-
         }
-
     }*/
 
     bindKey(Keycode, state){
