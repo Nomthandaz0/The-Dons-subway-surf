@@ -4,7 +4,7 @@ import *as THREE from '../Libra/three.module.js';
 export class CollisionHandler {
 
     static obstacle = 0;
-    static reward = 0
+    static reward = 1;
 
 
     constructor() {

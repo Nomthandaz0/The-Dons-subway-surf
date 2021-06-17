@@ -89,11 +89,11 @@ class Wheel{
         if (type === CollisionHandler.obstacle){
             this._fspeed = 0;
          }
-        /*if (type === CollisionHandler.reward){
+        if (type === CollisionHandler.reward){
              this.score = this.score +1;
              console.log(this.score);
              this._fspeed = 0.1;
-        }*/
+        }
     }
 }
 export {Wheel};

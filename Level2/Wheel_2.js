@@ -4,7 +4,7 @@ import {CollisionHandler} from "../JS_files/CollisionHandler.js";
 class Wheel_2{
 
     constructor(worldCamera) {
-
+        this.score =0;
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
@@ -88,6 +88,7 @@ class Wheel_2{
         }
 
         if (type === CollisionHandler.reward){
+            this.score = this.score +1;
             console.log();
             this._fspeed = 0.1;
         }

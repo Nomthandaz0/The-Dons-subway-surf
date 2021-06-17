@@ -58,7 +58,7 @@ const createworld = () => {
     document.body.appendChild(renderer.domElement);                                                                 //attaching render to the screen or page
 
     initLights();
-    controls = new CONTROL.OrbitControls(camera, renderer.domElement);
+    //controls = new CONTROL.OrbitControls(camera, renderer.domElement);
 
     ground = new Ground(camera);
     scene.add(ground.getGround);
@@ -89,14 +89,14 @@ const pauseGame = () =>{
     }
 }
 
-
+let dirLight;
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );
     light.position.set(0,200,0);
     scene.add( light );
 
     const shadowBound = 20;
-    const dirLight = new THREE.DirectionalLight( 0xffffff );
+    dirLight = new THREE.DirectionalLight( 0xffffff );
     dirLight.position.set(0,20,-25);
 
     dirLight.castShadow = true;
@@ -135,8 +135,11 @@ const Skybox = () => {
 const animate = (time) => {
     renderer.render(scene,camera);
     if(gameIsPaused) return;
-    controls.update();
+    //controls.update();
     ground.animateGround(time);
+    if(dirLight){
+       dirLight.position.z -= 0.05;
+    }
 
 }
 

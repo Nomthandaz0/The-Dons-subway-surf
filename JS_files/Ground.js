@@ -29,11 +29,11 @@ class Ground {
             this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
         }
 
-        /*const coinGroup = this._coin.getCoin;
+        const coinGroup = this._coin.getCoin;
         for(let i=0; i<coinGroup.children.length; i++){
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
-        }*/
+        }
         // this._buildStage(SceneF);
     }
 
