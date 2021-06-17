@@ -5,8 +5,6 @@ import {Ground} from './Ground.js';
 let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
-const level2Button = document.getElementById("level2");
-const level3button = document.getElementById("level3");
 
 level1Button.addEventListener('click',() => {
 
@@ -19,28 +17,7 @@ level1Button.addEventListener('click',() => {
 
 });
 
-level2Button.addEventListener('click',() => {
 
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'none';
-    }
-    gameIsPaused = false;
-
-});
-
-
-level3button.addEventListener('click',() => {
-
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'none';
-    }
-    gameIsPaused = false;
-
-});
 
 const createworld = () => {
 
