@@ -23,7 +23,7 @@ class Ground_3 {
         this._world.add(this._cube.getCube3);
 
 
-        const cubeGroup = this._cube.getCube3;
+       /* const cubeGroup = this._cube.getCube3;
         for(let i=0; i<cubeGroup.children.length; i++){
             const cubeChild = cubeGroup.children[i];
             this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
@@ -33,7 +33,7 @@ class Ground_3 {
         for(let i=0; i<coinGroup.children.length; i++){
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
-        }
+        }*/
         // this._buildStage(SceneF);
     }
 

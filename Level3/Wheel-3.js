@@ -1,5 +1,4 @@
 import *as THREE from '../Libra/three.module.js';
-import {CollisionHandler} from "./CollisionHandler.js";
 
 class Wheel3{
 
@@ -86,10 +85,10 @@ class Wheel3{
     }
 
     onCollision(type){
-        if (type === CollisionHandler.obstacle){
+        /*if (type === CollisionHandler.obstacle){
             this._fspeed = 0;
         }
-        /*if (type === CollisionHandler.reward){
+        if (type === CollisionHandler.reward){
              this.score = this.score +1;
              console.log(this.score);
              this._fspeed = 0.1;
