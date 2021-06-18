@@ -1,6 +1,8 @@
 import *as THREE from '../Libra/three.module.js';
 
 
+
+
 export class CollisionHandler {
 
     static obstacle = 0;
@@ -26,10 +28,16 @@ export class CollisionHandler {
             const colliabledObject = this._collidableObjs[obj];
             const object = colliabledObject[0];
             const type = colliabledObject[1];
-
             if (wheelBox.intersectsBox(object)) {
                 wheel.onCollision(type);
+                window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=73816v80rjsmlr94jq6u5nlhbd");
+
+
+
             }
+
+
+
         }
 
     }

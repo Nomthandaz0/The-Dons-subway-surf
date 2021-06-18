@@ -2,6 +2,7 @@ import *as THREE from '../Libra/three.module.js';
 import * as CONTROL from '../Libra/OrbitControls.js';
 import {Ground} from './Ground.js';
 
+
 let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
@@ -10,6 +11,19 @@ const level3button = document.getElementById("level3");*/
 
 level1Button.addEventListener('click',() => {
 
+    setGameOnPlay();
+
+});
+
+/*const level1a = document.getElementById("level1a");
+level1a.addEventListener('click',() => {
+
+    //GameOnPlay();
+    setGameOnPlay();
+
+});
+
+const setGameOnPlay = () => {
     const menus = document.getElementsByClassName('menu');
     for(let i = 0; i<menus.length; i++){
         const menu = menus[i];
@@ -27,8 +41,15 @@ level1Button.addEventListener('click',() => {
         menu.style.display = 'none';
     }
     gameIsPaused = false;
-
-});
+};
+/*const GameOnPlay = () => {
+    const endGame = document.getElementsByClassName('endGame');
+    for(let i = 0; i<endGame.length; i++){
+        const endGame = endGame[i];
+        endGame.style.display = 'none';
+    }
+    gameIsPaused = false;
+};*/
 
 
 level3button.addEventListener('click',() => {
@@ -40,7 +61,7 @@ level3button.addEventListener('click',() => {
     }
     gameIsPaused = false;
 
-});*/
+});
 
 const createworld = () => {
 
@@ -72,7 +93,7 @@ const createworld = () => {
 
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
-        if(e.code === 'Escape') pauseGame();
+        if(e.code === 'Enter') pauseGame();
         ground.bindKey(e.code, true);
     });
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
@@ -82,12 +103,24 @@ const createworld = () => {
 
 const pauseGame = () =>{
     gameIsPaused = true;
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'block';
-    }
+    document.getElementById('gameOver').style.display = 'flex';
+    document.getElementById('level1a').addEventListener('click',()=>{
+        setGameOnPlay();
+    });
+    /*const  endGame= document.getElementsByClassName('endGame');
+    document.getElementById('level1a').addEventListener('click', () =>{
+       GameOnPlay();
+    });*/
+
+
 }
+/*const gameOver = () =>{
+    gameIsPaused = true;
+    document.getElementById('gameOver').style.display = 'flex';
+    document.getElementById('level1a').addEventListener('click', ()=>{
+        setGameOnPlay()
+    });
+}*/
 
 let dirLight;
 const initLights = () =>{
