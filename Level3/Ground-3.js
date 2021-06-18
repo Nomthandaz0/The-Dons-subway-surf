@@ -3,7 +3,8 @@ import {Cube3} from './Cube3.js';
 import {Coins_3} from './Coins-3.js';
 import {SceneD} from "../JS_files/SceneD.js";
 import {Wheel3} from "./Wheel-3.js";
-import {CollisionHandler} from "../JS_files/CollisionHandler.js";
+import {CollisionHandler3} from "./CollisionHandler3.js";
+import {Obstacle2} from "./Obstacle2.js";
 
 
 class Ground_3 {
@@ -13,27 +14,29 @@ class Ground_3 {
     _Initialize(camera ,SceneF){
         this._world = new THREE.Group();
         this._wheel = new Wheel3(camera);
-        this._collisionHandler = new CollisionHandler();
+        this._collisionHandler = new CollisionHandler3();
         this._coin = new Coins_3();
+        this._plane = new Obstacle2();
         this._cube = new Cube3();
         const geneGround = this._generateGround();
         this._world.add(geneGround);
-        this._world.add(this._wheel.getWheel);
+        this._world.add(this._wheel.getWheel3);
         this._world.add(this._coin.getCoin3);
         this._world.add(this._cube.getCube3);
+        this._world.add(this._plane.getObstacle);
 
 
-       /* const cubeGroup = this._cube.getCube3;
+        const cubeGroup = this._cube.getCube3;
         for(let i=0; i<cubeGroup.children.length; i++){
             const cubeChild = cubeGroup.children[i];
-            this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
+            this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler3.obstacle);
         }
 
         const coinGroup = this._coin.getCoin3;
         for(let i=0; i<coinGroup.children.length; i++){
             const coinChild = coinGroup.children[i];
-            this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
-        }*/
+            this._collisionHandler.addCollidableObject(coinChild, CollisionHandler3.reward);
+        }
         // this._buildStage(SceneF);
     }
 
@@ -63,7 +66,14 @@ class Ground_3 {
 
     animateGround3 (time) {
         this._wheel.animateWheel(time);
-        //this._collisionHandler.detectCollision(this._wheel);
+        const obsGroup = this._plane.getObstacle;
+        for(let i=0; i<obsGroup.children.length; i++) {
+            const obsChild = obsGroup.children[i];
+            obsChild.rotation.y = time/500;
+            //this._collisionHandler.addCollidableObject(obsChild, CollisionHandler3.obstacle);
+
+        }
+        this._collisionHandler.detectCollision(this._wheel);
 
     }
 }

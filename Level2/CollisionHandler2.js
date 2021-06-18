@@ -1,8 +1,6 @@
 import *as THREE from '../Libra/three.module.js';
 
 
-
-
 export class CollisionHandler {
 
     static obstacle = 0;
@@ -22,23 +20,16 @@ export class CollisionHandler {
     }
 
     detectCollision(wheel) {
-        const wheelBox = new THREE.Box3().setFromObject(wheel.getWheel);
+        const wheelBox = new THREE.Box3().setFromObject(wheel.getWheel2);
 
         for (const obj in this._collidableObjs) {
             const colliabledObject = this._collidableObjs[obj];
             const object = colliabledObject[0];
             const type = colliabledObject[1];
+
             if (wheelBox.intersectsBox(object)) {
                 wheel.onCollision(type);
-                //alert("GAME OVER");
-
-
-
-
             }
-
-
-
         }
 
     }

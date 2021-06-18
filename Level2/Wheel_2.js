@@ -1,9 +1,11 @@
 import *as THREE from '../Libra/three.module.js';
-import {CollisionHandler} from "../JS_files/CollisionHandler.js";
+import {CollisionHandler} from "./CollisionHandler2.js";
 
 class Wheel_2{
 
     constructor(worldCamera) {
+        this._sideways =0.07;
+        this._speed = 0.5;
         this.score =0;
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
@@ -51,18 +53,18 @@ class Wheel_2{
         const moveR = this._KeyBind['ArrowRight'];
         const moved = this._KeyBind ['ArrowDown'];
         if (movef) {
-            this._wheel.position.z -=0.05;
-            this._camera.position.z  -=0.05;
+            this._wheel.position.z -=this._speed;
+            this._camera.position.z  -=this._speed;
         }
         if(moveL){
-            this._wheel.position.x  -=0.07;
+            this._wheel.position.x  -=this._sideways;
         }
         if(moveR){
-            this._wheel.position.x +=0.07;
+            this._wheel.position.x +=this._sideways;
         }
         if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+            this._wheel.position.z +=this._speed;
+            this._camera.position.z  +=this._speed;
             /* const poss = counter*Math.sin(time/10000);
              this._wheel.position.y +=poss;
              this._camera.position.y +=poss;
@@ -85,11 +87,13 @@ class Wheel_2{
     onCollision(type){
         if (type === CollisionHandler.obstacle){
             this._fspeed = 0;
+            this._sideways = 0;
+            this._speed = 0;
         }
 
         if (type === CollisionHandler.reward){
             this.score = this.score +1;
-            console.log();
+            console.log(this.score);
             this._fspeed = 0.1;
         }
     }

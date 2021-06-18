@@ -7,14 +7,14 @@ class Cube3{
 
         for (let i=0; i<100; i++) {
 
-            const cube1 = this._generateCube();
-            cube1.scale.set(0.1, 0.1, 0.1);
+            const cub = this._generateCube();
+            cub.scale.set(0.1, 0.1, 0.1);
 
-            cube1.position.x += 0.3;
-            cube1.position.z += -0.45-25*i;
-            cube1.position.y -= 0.10;
+            cub.position.x += 0.3;
+            cub.position.z += -0.45-50*i;
+            cub.position.y -= 0.10;
 
-            this._group.add(cube1);
+            this._group.add(cub);
             this._group.castShadow = true;
             this._group.receiveShadow = true
 
@@ -22,14 +22,14 @@ class Cube3{
 
         for (let k=1; k<100; k++) {
 
-            const cube1 = this._generateCube();
-            cube1.scale.set(0.1, 0.1, 0.1);
-            this._group.add(cube1);
+            const cub = this._generateCube();
+            cub.scale.set(0.1, 0.1, 0.1);
+            this._group.add(cub)
 
-            cube1.position.x -= 0.3;
-            cube1.position.z += -0.45-25*k;
-            cube1.position.y -= 0.10;
-            this._group.add(cube1);
+            cub.position.x -= 0.3;
+            cub.position.z += -0.45-25*k;
+            cub.position.y -= 0.10;
+            this._group.add(cub);
         }
 
         for (let j=1; j<100; j++){

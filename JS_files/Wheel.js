@@ -4,6 +4,8 @@ import {CollisionHandler} from "./CollisionHandler.js";
 class Wheel{
 
     constructor(worldCamera) {
+        this._speed = 0.05;
+        this._sideways =0.07;
         this.position = new THREE.Vector3(0,0,0);
         this.v_ = 0.0;
         this.score = 0;
@@ -54,18 +56,18 @@ class Wheel{
         const moveR = this._KeyBind['ArrowRight'];
         const moved = this._KeyBind ['ArrowDown'];
         if (movef) {
-            this._wheel.position.z -=0.05;
-            this._camera.position.z  -=0.05;
+            this._wheel.position.z -=this._speed;
+            this._camera.position.z  -=this._speed;
         }
         if(moveL){
-            this._wheel.position.x  -=0.07;
+            this._wheel.position.x  -=this._sideways;
         }
         if(moveR){
-            this._wheel.position.x +=0.07;
+            this._wheel.position.x +=this._sideways;
         }
         if (moved) {
-            this._wheel.position.z +=0.05;
-            this._camera.position.z  +=0.05;
+            this._wheel.position.z +=this._speed;
+            this._camera.position.z  +=this._speed;
             /* const poss = counter*Math.sin(time/10000);
              this._wheel.position.y +=poss;
              this._camera.position.y +=poss;
@@ -88,6 +90,8 @@ class Wheel{
     onCollision(type){
         if (type === CollisionHandler.obstacle){
             this._fspeed = 0;
+            this._sideways = 0;
+            this._speed = 0;
          }
         if (type === CollisionHandler.reward){
              this.score = this.score +1;
