@@ -93,12 +93,16 @@ class Wheel3{
             this._fspeed = 0;
             this._speed =0;
             this._sideways =0;
+            this.gameOver();
         }
         if (type === CollisionHandler3.reward){
              this._score = this._score +1;
              console.log(this._score);
              this._fspeed = 0.1;
         }
+    }
+    gameOver(){
+        document.getElementById('score').innerHTML = "YOUR SCORE IS: " + this._score;
     }
 }
 export {Wheel3};

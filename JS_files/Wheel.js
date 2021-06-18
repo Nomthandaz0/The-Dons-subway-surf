@@ -9,6 +9,7 @@ class Wheel{
         this.position = new THREE.Vector3(0,0,0);
         this.v_ = 0.0;
         this.score = 0;
+        this.counter = 0;
 
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
@@ -50,7 +51,6 @@ class Wheel{
     }
     animateWheel(time) {
 
-        const counter = 0.5;
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
@@ -92,6 +92,7 @@ class Wheel{
             this._fspeed = 0;
             this._sideways = 0;
             this._speed = 0;
+            this.gameOver();
          }
         if (type === CollisionHandler.reward){
              this.score = this.score +1;
@@ -99,5 +100,20 @@ class Wheel{
              this._fspeed = 0.1;
         }
     }
+
+    gameOver(){
+        document.getElementById('score').innerHTML = "YOUR SCORE IS: " + this.score;
+    }
+
+   /* timeIt(){
+        this.counter++;
+    }
+
+    nextLevel(){
+        const  time = setInterval(timeIt, 1000);
+        if(this.score >= 60 && time == 60){
+            onpageshow(Level2/MainF_2);
+        }
+    }*/
 }
 export {Wheel};
