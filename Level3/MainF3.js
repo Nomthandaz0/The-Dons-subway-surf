@@ -7,6 +7,11 @@ let scene3,camera, renderer,controls, ground3,gameIsPaused = true;
 const level3Button = document.getElementById("level1");
 level3Button.addEventListener('click',() => {
 
+    setGameOnPlay();
+
+});
+
+const setGameOnPlay = () => {
     const menus = document.getElementsByClassName('menu');
     for(let i = 0; i<menus.length; i++){
         const menu = menus[i];
@@ -14,9 +19,7 @@ level3Button.addEventListener('click',() => {
     }
     gameIsPaused = false;
 
-});
-
-
+}
 const createworld = () => {
 
     scene3 = new THREE.Scene();
@@ -47,7 +50,7 @@ const createworld = () => {
 
 
     window.addEventListener('keydown', (e) => {                                 // movement of the wheel
-        if(e.code === 'Escape') pauseGame();
+        if(e.code === 'Enter') pauseGame();
         ground3.bindKey3(e.code, true);
     });
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
@@ -55,15 +58,13 @@ const createworld = () => {
     });
 };
 
-const pauseGame = () =>{
+const pauseGame = () => {
     gameIsPaused = true;
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'block';
-    }
+    document.getElementById('gameOver').style.display = 'flex';
+    document.getElementById('level1a').addEventListener('click', () => {
+        setGameOnPlay();
+    });
 }
-
 
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );

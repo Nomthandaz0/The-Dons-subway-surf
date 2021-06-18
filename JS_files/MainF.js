@@ -2,7 +2,6 @@ import *as THREE from '../Libra/three.module.js';
 import * as CONTROL from '../Libra/OrbitControls.js';
 import {Ground} from './Ground.js';
 
-
 let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
@@ -88,19 +87,18 @@ const createworld = () => {
 
 };
 
-const pauseGame = () =>{
+const pauseGame = () => {
     gameIsPaused = true;
     document.getElementById('gameOver').style.display = 'flex';
-    document.getElementById('level1a').addEventListener('click',()=>{
+    document.getElementById('level1a').addEventListener('click', () => {
         setGameOnPlay();
     });
+}
     /*const  endGame= document.getElementsByClassName('endGame');
     document.getElementById('level1a').addEventListener('click', () =>{
        GameOnPlay();
     });*/
 
-
-}
 /*const gameOver = () =>{
     gameIsPaused = true;
     document.getElementById('gameOver').style.display = 'flex';

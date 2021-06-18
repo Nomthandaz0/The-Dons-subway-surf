@@ -1,8 +1,5 @@
 import *as THREE from '../Libra/three.module.js';
 
-
-
-
 export class CollisionHandler {
 
     static obstacle = 0;
@@ -32,12 +29,7 @@ export class CollisionHandler {
                 wheel.onCollision(type);
                 //alert("GAME OVER");
 
-
-
-
             }
-
-
 
         }
 
