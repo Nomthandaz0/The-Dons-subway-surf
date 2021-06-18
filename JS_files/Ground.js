@@ -27,6 +27,7 @@ class Ground {
         for(let i=0; i<cubeGroup.children.length; i++){
             const cubeChild = cubeGroup.children[i];
             this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
+            //window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=73816v80rjsmlr94jq6u5nlhbd");
         }
 
         const coinGroup = this._coin.getCoin;

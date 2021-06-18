@@ -30,7 +30,8 @@ export class CollisionHandler {
             const type = colliabledObject[1];
             if (wheelBox.intersectsBox(object)) {
                 wheel.onCollision(type);
-                window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=73816v80rjsmlr94jq6u5nlhbd");
+                //alert("GAME OVER");
+
 
 
 

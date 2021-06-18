@@ -6,22 +6,11 @@ import {Ground} from './Ground.js';
 let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
-/*const level2Button = document.getElementById("level2");
-const level3button = document.getElementById("level3");*/
 
 level1Button.addEventListener('click',() => {
 
     setGameOnPlay();
-
 });
-
-/*const level1a = document.getElementById("level1a");
-level1a.addEventListener('click',() => {
-
-    //GameOnPlay();
-    setGameOnPlay();
-
-});*/
 
 const setGameOnPlay = () => {
     const menus = document.getElementsByClassName('menu');
@@ -32,36 +21,6 @@ const setGameOnPlay = () => {
     gameIsPaused = false;
 
 }
-
-/*level2Button.addEventListener('click',() => {
-
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'none';
-    }
-    gameIsPaused = false;
-};
-/*const GameOnPlay = () => {
-    const endGame = document.getElementsByClassName('endGame');
-    for(let i = 0; i<endGame.length; i++){
-        const endGame = endGame[i];
-        endGame.style.display = 'none';
-    }
-    gameIsPaused = false;
-};*/
-
-
-level3button.addEventListener('click',() => {
-
-    const menus = document.getElementsByClassName('menu');
-    for(let i = 0; i<menus.length; i++){
-        const menu = menus[i];
-        menu.style.display = 'none';
-    }
-    gameIsPaused = false;
-
-});
 
 const createworld = () => {
 
@@ -79,7 +38,7 @@ const createworld = () => {
     document.body.appendChild(renderer.domElement);                                                                 //attaching render to the screen or page
 
     initLights();
-    //controls = new CONTROL.OrbitControls(camera, renderer.domElement);
+    controls = new CONTROL.OrbitControls(camera, renderer.domElement);
 
     ground = new Ground(camera);
     scene.add(ground.getGround);
