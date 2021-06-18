@@ -6,7 +6,7 @@ class Wheel_2{
     constructor(worldCamera) {
         this._sideways =0.07;
         this._speed = 0.5;
-        this.score =0;
+        this._score =0;
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
@@ -88,20 +88,21 @@ class Wheel_2{
             this._sideways = 0;
             this._speed = 0;
             window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=dhhkeqgu4oro69duu2fqfgot6l");
-            this.gameOver();
+            alert(this._score)
+
             /**
              * wheel making no movements when it hits an obstacle
              */
         }
 
         if (type === CollisionHandler.reward){
-            this.score = this.score +1;
-            console.log(this.score);
+            this._score = this._score +1;
+            console.log(this._score);
             this._fspeed = 0.1;
         }
     }
     gameOver(){
-        document.getElementById('score').innerHTML = "YOUR SCORE IS: " + this.score;
+        document.getElementById('score').innerHTML = "YOUR SCORE IS: " + this._score;
     }
 }
 export {Wheel_2};

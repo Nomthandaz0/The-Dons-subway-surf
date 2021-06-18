@@ -93,6 +93,7 @@ class Wheel3{
             this._speed =0;
             this._sideways =0;
             window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=dhhkeqgu4oro69duu2fqfgot6l");
+            alert(this._score)
             /**
              * wheel making no movements when it hits an obstacle
              */

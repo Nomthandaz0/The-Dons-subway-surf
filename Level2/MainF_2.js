@@ -4,7 +4,7 @@ import {Ground_2} from './Ground_2.js';
 
 let scene2,camera, renderer,controls, ground2,gameIsPaused = true;
 
-const level2Button = document.getElementById("level1");
+const level2Button = document.getElementById("level2");
 level2Button.addEventListener('click',() => {
 
     setGameOnPlay();
