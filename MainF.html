@@ -21,6 +21,12 @@
             justify-content: center;
         }
 
+         .center{
+             height:550px;
+             width: 120px;
+             color: darkred;
+         }
+
         .menu-button{
             height:55px;
             width: 120px;
@@ -40,11 +46,14 @@
 </head>
 <body>
 <script src = "JS_files/MainF.js" type="module"></script>
-/*changes here*/
 <div class = "menu">
     <button id="level1" class="menu-button">Level 1</button>
 
 </div>
 
+<div id = "gameOver" class = "menu" style="display: none">
+    <h1 class="center">GAME OVER!</h1>
+    <button id="level1a" class="menu-button">Level 1</button>
+</div>
 </body>
 </html>
