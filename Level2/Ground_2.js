@@ -3,7 +3,7 @@ import {Cube2} from './Cube2.js';
 import {Coins_2} from './Coins_2.js';
 import {SceneD} from "../JS_files/SceneD.js";
 import {Wheel_2} from "./Wheel_2.js";
-import {CollisionHandler} from "../JS_files/CollisionHandler.js";
+import {CollisionHandler} from "./CollisionHandler2.js";
 
 
 class Ground_2 {
@@ -109,7 +109,7 @@ class Ground_2 {
 
     animateGround2 (time) {
         this._wheel.animateWheel2(time);
-        //this._collisionHandler.detectCollision(this._wheel);
+        this._collisionHandler.detectCollision(this._wheel);
 
     }
 }

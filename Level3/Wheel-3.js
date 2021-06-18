@@ -1,16 +1,20 @@
 import *as THREE from '../Libra/three.module.js';
+import {CollisionHandler3} from "./CollisionHandler3.js";
+
 
 class Wheel3{
 
     constructor(worldCamera) {
         this.position = new THREE.Vector3(0,0,0);
         this.v_ = 0.0;
-        this.score = 0;
+        this._score = 0;
 
+        this._sideways =0.07;
+        this._speed = 0.05;
         this._wheel = new THREE.Group();
         this._KeyBind = new THREE.Group();
         this._camera =  worldCamera ;
-        this._fspeed = 0.1;
+        this._fspeed = 0.5;
         this._camera.position.set(0.01806434562578374, 0.32850558343910313, 0.9443292651752567);
 
 
@@ -39,7 +43,7 @@ class Wheel3{
         return wheel;
     }
 
-    get getWheel(){
+    get getWheel3(){
         return this._wheel;
     }
     bindKeyPress(KeyCode , state){
@@ -53,14 +57,14 @@ class Wheel3{
         const moveR = this._KeyBind['ArrowRight'];
         const moved = this._KeyBind ['ArrowDown'];
         if (movef) {
-            this._wheel.position.z -=0.05;
-            this._camera.position.z  -=0.05;
+            this._wheel.position.z -=this._speed;
+            this._camera.position.z  -=this._speed;
         }
         if(moveL){
-            this._wheel.position.x  -=0.07;
+            this._wheel.position.x  -=this._sideways;
         }
         if(moveR){
-            this._wheel.position.x +=0.07;
+            this._wheel.position.x +=this._sideways;
         }
         if (moved) {
             this._wheel.position.z +=0.05;
@@ -85,14 +89,16 @@ class Wheel3{
     }
 
     onCollision(type){
-        /*if (type === CollisionHandler.obstacle){
+        if (type === CollisionHandler3.obstacle){
             this._fspeed = 0;
+            this._speed =0;
+            this._sideways =0;
         }
-        if (type === CollisionHandler.reward){
-             this.score = this.score +1;
-             console.log(this.score);
+        if (type === CollisionHandler3.reward){
+             this._score = this._score +1;
+             console.log(this._score);
              this._fspeed = 0.1;
-        }*/
+        }
     }
 }
 export {Wheel3};
