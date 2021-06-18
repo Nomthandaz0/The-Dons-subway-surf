@@ -3,13 +3,15 @@ import *as THREE from '../Libra/three.module.js';
 class Obstacle2{
     constructor() {
         this._group = new THREE.Group();
+
         for (let i=4; i<100; i++) {
 
             const genePlane = this._generatePlane();
-            genePlane.scale.set(1, 0.5, 1);
-            const a = genePlane.position.y += 0.1;
-            genePlane.position.z -=i*20;
+            genePlane.scale.set(0.5, 0.5, 1);
+            genePlane.position.y += 0.1;
+            genePlane.position.z -=i*10;
             this._group.add(genePlane);
+
         }
     }
     _generatePlane(){

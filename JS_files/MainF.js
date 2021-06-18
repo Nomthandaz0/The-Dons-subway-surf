@@ -58,6 +58,34 @@ const createworld = () => {
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
         ground.bindKey(e.code, false);
     });
+
+    /*const audioListener = new THREE.AudioListener();
+
+    camera.add( audioListener );
+
+    const ocean = new THREE.Audio( audioListener );
+
+    scene.add( ocean );
+    const loader = new THREE.AudioLoader();
+
+    loader.load(
+        './ThemeSong.mp3',
+        function ( audioBuffer ) {
+            ocean.setBuffer( audioBuffer );
+            ocean.play();
+        },
+
+        function ( xhr ) {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+
+        function ( err ) {
+            console.log( 'An error happened' );
+        }
+
+);*/
+
+
 };
 
 const pauseGame = () =>{
@@ -127,7 +155,7 @@ const Skybox = () => {
 const animate = (time) => {
     renderer.render(scene,camera);
     if(gameIsPaused) return;
-    //controls.update();
+    controls.update();
     ground.animateGround(time);
     if(dirLight){
        dirLight.position.z -= 0.05;

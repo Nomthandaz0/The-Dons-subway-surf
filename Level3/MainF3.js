@@ -4,7 +4,7 @@ import {Ground_3} from './Ground-3.js';
 
 let scene3,camera, renderer,controls, ground3,gameIsPaused = true;
 
-const level3Button = document.getElementById("level3");
+const level3Button = document.getElementById("level1");
 level3Button.addEventListener('click',() => {
 
     const menus = document.getElementsByClassName('menu');

@@ -11,7 +11,7 @@ class Cube3{
             cub.scale.set(0.1, 0.1, 0.1);
 
             cub.position.x += 0.3;
-            cub.position.z += -0.45-50*i;
+            cub.position.z += -0.45-i;
             cub.position.y -= 0.10;
 
             this._group.add(cub);

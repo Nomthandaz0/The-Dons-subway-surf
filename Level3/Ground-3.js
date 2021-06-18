@@ -36,7 +36,7 @@ class Ground_3 {
         for(let i=0; i<coinGroup.children.length; i++){
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler3.reward);
-        }
+         }
         // this._buildStage(SceneF);
     }
 
@@ -70,7 +70,7 @@ class Ground_3 {
         for(let i=0; i<obsGroup.children.length; i++) {
             const obsChild = obsGroup.children[i];
             obsChild.rotation.y = time/500;
-            //this._collisionHandler.addCollidableObject(obsChild, CollisionHandler3.obstacle);
+            this._collisionHandler.addCollidableObject(obsChild, CollisionHandler3.obstacle);
 
         }
         this._collisionHandler.detectCollision(this._wheel);

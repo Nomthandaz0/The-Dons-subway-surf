@@ -48,6 +48,5 @@ class Cube2{
         return this._group;
     }
 
-
 }
 export {Cube2};
