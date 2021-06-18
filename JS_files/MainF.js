@@ -21,7 +21,7 @@ level1a.addEventListener('click',() => {
     //GameOnPlay();
     setGameOnPlay();
 
-});
+});*/
 
 const setGameOnPlay = () => {
     const menus = document.getElementsByClassName('menu');
@@ -31,7 +31,7 @@ const setGameOnPlay = () => {
     }
     gameIsPaused = false;
 
-});
+}
 
 /*level2Button.addEventListener('click',() => {
 
