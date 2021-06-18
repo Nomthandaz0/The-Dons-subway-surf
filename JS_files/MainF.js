@@ -6,6 +6,7 @@ let scene,camera, renderer,controls, ground,gameIsPaused = true;
 
 const level1Button = document.getElementById("level1");
 
+
 level1Button.addEventListener('click',() => {
 
     setGameOnPlay();
@@ -58,10 +59,8 @@ const createworld = () => {
         ground.bindKey(e.code, false);
     });
 
-    /*const audioListener = new THREE.AudioListener();
-
+    const audioListener = new THREE.AudioListener();
     camera.add( audioListener );
-
     const ocean = new THREE.Audio( audioListener );
 
     scene.add( ocean );
@@ -71,6 +70,10 @@ const createworld = () => {
         './ThemeSong.mp3',
         function ( audioBuffer ) {
             ocean.setBuffer( audioBuffer );
+            const music = document.getElementById("music");
+        music.addEventListener('click',() => {
+            ocean.resume();
+        });
             ocean.play();
         },
 
@@ -82,10 +85,10 @@ const createworld = () => {
             console.log( 'An error happened' );
         }
 
-);*/
+    );
 
 
-};
+}
 
 const pauseGame = () => {
     gameIsPaused = true;
@@ -94,18 +97,10 @@ const pauseGame = () => {
         setGameOnPlay();
     });
 }
-    /*const  endGame= document.getElementsByClassName('endGame');
-    document.getElementById('level1a').addEventListener('click', () =>{
-       GameOnPlay();
-    });*/
 
-/*const gameOver = () =>{
-    gameIsPaused = true;
-    document.getElementById('gameOver').style.display = 'flex';
-    document.getElementById('level1a').addEventListener('click', ()=>{
-        setGameOnPlay()
-    });
-}*/
+/**Light we used is directional light
+ */
+
 
 let dirLight;
 const initLights = () =>{
@@ -155,6 +150,9 @@ const animate = (time) => {
     if(gameIsPaused) return;
     controls.update();
     ground.animateGround(time);
+    /**
+     * getting light to move with the wheel
+     */
     if(dirLight){
        dirLight.position.z -= 0.05;
     }

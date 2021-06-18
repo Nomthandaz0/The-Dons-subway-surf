@@ -1,16 +1,15 @@
 import *as THREE from '../Libra/three.module.js';
 import {cube} from './cube.js';
 import {Coin} from './Coin.js';
-import {SceneD} from "./SceneD.js";
 import {Wheel} from "./Wheel.js";
 import {CollisionHandler} from "./CollisionHandler.js";
 
 
 class Ground {
     constructor(camera) {
-        this._Initialize(camera, new SceneD().Scene1);
+        this._Initialize(camera);
     }
-    _Initialize(camera ,SceneF){
+    _Initialize(camera){
         this._world = new THREE.Group();
         this._wheel = new Wheel(camera);
         this._collisionHandler = new CollisionHandler();
@@ -22,21 +21,25 @@ class Ground {
         this._world.add(this._coin.getCoin);
         this._world.add(this._cube.getCube);
 
+        /**
+         *passing cube as an obstacle
+         */
 
         const cubeGroup = this._cube.getCube;
         for(let i=0; i<cubeGroup.children.length; i++){
             const cubeChild = cubeGroup.children[i];
             this._collisionHandler.addCollidableObject(cubeChild, CollisionHandler.obstacle);
-            //window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=73816v80rjsmlr94jq6u5nlhbd");
         }
 
+        /**
+         *passing coin as a reward
+         */
         const coinGroup = this._coin.getCoin;
         for(let i=0; i<coinGroup.children.length; i++){
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
         }
-        // this._buildStage(SceneF);
-    }
+     }
 
     _generateGround(){
         //road texture
@@ -54,52 +57,6 @@ class Ground {
         return ground;
     }
 
-
-   /* _buildStage(SceneF) {
-
-        for(let r=0; r<10; r++ ) {
-            let zPos = -0.5;
-            let zPos2 = -0.5;
-
-            for (let i = 0; i < SceneF.length; i++) {  //6
-                const rowD = SceneF[i];
-                let xPos = 0.3;
-                let xPos2 = 0.3;
-
-
-                for (let k = 0; k < rowD.length; k++) {
-                    const desc = rowD[k];
-
-                    switch (desc) {
-                        case 1:
-                            const coin = new Coin().getCoin;
-                            coin.position.x = xPos;
-                            coin.position.z = zPos;
-                            this._world.add(coin);
-                            this._collisionHandler.addCollidableObject(coin, CollisionHandler.reward);
-                            break;
-
-                        case 2:
-                            const cubes = new cube().getCube;
-                            cubes.position.x = xPos2;
-                            cubes.position.z = zPos2;
-                            this._world.add(cubes);
-                            this._collisionHandler.addCollidableObject(cubes, CollisionHandler.obstacle);
-                            break;
-                    }
-
-                    xPos -= 0.3;
-                    xPos2 -= 0.3;
-
-                }
-
-                zPos -= 0.5;
-                zPos2 -= 0.5;
-
-            }
-        }
-    }*/
-
     bindKey(Keycode, state){
         this._wheel.bindKeyPress(Keycode, state);
     }
@@ -111,7 +68,6 @@ class Ground {
     animateGround (time) {
         this._wheel.animateWheel(time);
         this._collisionHandler.detectCollision(this._wheel);
-
     }
 }
 export {Ground}

@@ -5,6 +5,9 @@ class Cube3{
     constructor() {
         this._group = new THREE.Group();
 
+        /**
+         *Duplication of cubes and giving each position
+         */
         for (let i=0; i<100; i++) {
 
             const cub = this._generateCube();
@@ -53,7 +56,9 @@ class Cube3{
         const material = new THREE.MeshPhongMaterial( {map: texture3, side: THREE.DoubleSide} );
         return new THREE.Mesh( geometry, material );
     }
-
+    /**
+     *function for getting cubes
+     */
     get getCube3(){
         return this._group;
     }

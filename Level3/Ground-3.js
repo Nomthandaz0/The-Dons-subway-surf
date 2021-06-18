@@ -1,7 +1,6 @@
 import *as THREE from '../Libra/three.module.js';
 import {Cube3} from './Cube3.js';
 import {Coins_3} from './Coins-3.js';
-import {SceneD} from "../JS_files/SceneD.js";
 import {Wheel3} from "./Wheel-3.js";
 import {CollisionHandler3} from "./CollisionHandler3.js";
 import {Obstacle2} from "./Obstacle2.js";
@@ -9,9 +8,9 @@ import {Obstacle2} from "./Obstacle2.js";
 
 class Ground_3 {
     constructor(camera) {
-        this._Initialize(camera, new SceneD().Scene1);
+        this._Initialize(camera);
     }
-    _Initialize(camera ,SceneF){
+    _Initialize(camera ){
         this._world = new THREE.Group();
         this._wheel = new Wheel3(camera);
         this._collisionHandler = new CollisionHandler3();
@@ -37,8 +36,7 @@ class Ground_3 {
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler3.reward);
          }
-        // this._buildStage(SceneF);
-    }
+     }
 
     _generateGround(){
         //road texture

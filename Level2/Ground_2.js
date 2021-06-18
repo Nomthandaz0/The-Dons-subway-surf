@@ -1,16 +1,15 @@
 import *as THREE from '../Libra/three.module.js';
 import {Cube2} from './Cube2.js';
 import {Coins_2} from './Coins_2.js';
-import {SceneD} from "../JS_files/SceneD.js";
 import {Wheel_2} from "./Wheel_2.js";
 import {CollisionHandler} from "./CollisionHandler2.js";
 
 
 class Ground_2 {
     constructor(camera) {
-        this._Initialize(camera, new SceneD().Scene1);
+        this._Initialize(camera);
     }
-    _Initialize(camera ,SceneF){
+    _Initialize(camera ){
         this._world = new THREE.Group();
         this._wheel = new Wheel_2(camera);
         this._collisionHandler = new CollisionHandler();
@@ -34,8 +33,7 @@ class Ground_2 {
             const coinChild = coinGroup.children[i];
             this._collisionHandler.addCollidableObject(coinChild, CollisionHandler.reward);
         }
-        // this._buildStage(SceneF);
-    }
+     }
 
     _generateGround(){
         //road texture
@@ -52,52 +50,6 @@ class Ground_2 {
 
         return ground;
     }
-
-
-    /* _buildStage(SceneF) {
-
-         for(let r=0; r<10; r++ ) {
-             let zPos = -0.5;
-             let zPos2 = -0.5;
-
-             for (let i = 0; i < SceneF.length; i++) {  //6
-                 const rowD = SceneF[i];
-                 let xPos = 0.3;
-                 let xPos2 = 0.3;
-
-
-                 for (let k = 0; k < rowD.length; k++) {
-                     const desc = rowD[k];
-
-                     switch (desc) {
-                         case 1:
-                             const coin = new Coin().getCoin;
-                             coin.position.x = xPos;
-                             coin.position.z = zPos;
-                             this._world.add(coin);
-                             this._collisionHandler.addCollidableObject(coin, CollisionHandler.reward);
-                             break;
-
-                         case 2:
-                             const cubes = new cube().getCube;
-                             cubes.position.x = xPos2;
-                             cubes.position.z = zPos2;
-                             this._world.add(cubes);
-                             this._collisionHandler.addCollidableObject(cubes, CollisionHandler.obstacle);
-                             break;
-                     }
-
-                     xPos -= 0.3;
-                     xPos2 -= 0.3;
-
-                 }
-
-                 zPos -= 0.5;
-                 zPos2 -= 0.5;
-
-             }
-         }
-     }*/
 
     bindKey2(Keycode, state){
         this._wheel.bindKeyPress2(Keycode, state);

@@ -5,6 +5,9 @@ class Coins_3{
     constructor() {
         this._group = new THREE.Group();
 
+        /**
+         *Duplication of coins and giving each position
+         */
         let znew = -60;
         for (let i = 1; i < 10000; i++) {
 
@@ -34,7 +37,9 @@ class Coins_3{
 
         return coin;
     }
-
+    /**
+     *function for getting coins
+     */
     get getCoin3(){
         return this._group;
     }

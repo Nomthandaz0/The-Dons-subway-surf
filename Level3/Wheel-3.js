@@ -5,10 +5,8 @@ import {CollisionHandler3} from "./CollisionHandler3.js";
 class Wheel3{
 
     constructor(worldCamera) {
-        this.position = new THREE.Vector3(0,0,0);
-        this.v_ = 0.0;
-        this._score = 0;
 
+        this._score = 0;
         this._sideways =0.07;
         this._speed = 0.05;
         this._wheel = new THREE.Group();
@@ -51,7 +49,13 @@ class Wheel3{
     }
     animateWheel(time) {
 
-        const counter = 0.5;
+        /**
+         * wheel controls
+         * forward:arrowup
+         * slow speed:arrowdown
+         * right:arrowright
+         * left:arrowleft
+         */
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
@@ -69,17 +73,12 @@ class Wheel3{
         if (moved) {
             this._wheel.position.z +=0.05;
             this._camera.position.z  +=0.05;
-            /* const poss = counter*Math.sin(time/10000);
-             this._wheel.position.y +=poss;
-             this._camera.position.y +=poss;
-             this._counter += 0.3;
-             if(this._wheel.position.y > 0.6){
-                 console.log(this._wheel.position.y)
-                 this._wheel.position.y -=0.5;
-                 this._camera.position.y -=0.5;
-             }*/
+
         }
 
+        /**
+         * making the camera to move with the wheel
+         */
 
         this._wheel.position.z -= this._fspeed;
         this._camera.position.z -= this._fspeed;
@@ -93,16 +92,16 @@ class Wheel3{
             this._fspeed = 0;
             this._speed =0;
             this._sideways =0;
-            this.gameOver();
+            window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=dhhkeqgu4oro69duu2fqfgot6l");
+            /**
+             * wheel making no movements when it hits an obstacle
+             */
         }
         if (type === CollisionHandler3.reward){
              this._score = this._score +1;
              console.log(this._score);
              this._fspeed = 0.1;
         }
-    }
-    gameOver(){
-        document.getElementById('score').innerHTML = "YOUR SCORE IS: " + this._score;
     }
 }
 export {Wheel3};

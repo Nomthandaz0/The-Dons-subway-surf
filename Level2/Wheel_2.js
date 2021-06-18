@@ -46,8 +46,14 @@ class Wheel_2{
         this._KeyBind[KeyCode]= state ;
     }
     animateWheel2(time) {
+        /**
+         * wheel controls
+         * forward:arrowup
+         * slow speed:arrowdown
+         * right:arrowright
+         * left:arrowleft
+         */
 
-        const counter = 0.5;
         const movef = this._KeyBind ['ArrowUp'];
         const moveL = this._KeyBind['ArrowLeft'];
         const moveR = this._KeyBind['ArrowRight'];
@@ -65,15 +71,7 @@ class Wheel_2{
         if (moved) {
             this._wheel.position.z +=this._speed;
             this._camera.position.z  +=this._speed;
-            /* const poss = counter*Math.sin(time/10000);
-             this._wheel.position.y +=poss;
-             this._camera.position.y +=poss;
-             this._counter += 0.3;
-             if(this._wheel.position.y > 0.6){
-                 console.log(this._wheel.position.y)
-                 this._wheel.position.y -=0.5;
-                 this._camera.position.y -=0.5;
-             }*/
+
         }
 
 
@@ -89,7 +87,11 @@ class Wheel_2{
             this._fspeed = 0;
             this._sideways = 0;
             this._speed = 0;
+            window.location.replace("http://localhost:63342/The-Dons-subway-surf/MainF.html?_ijt=dhhkeqgu4oro69duu2fqfgot6l");
             this.gameOver();
+            /**
+             * wheel making no movements when it hits an obstacle
+             */
         }
 
         if (type === CollisionHandler.reward){

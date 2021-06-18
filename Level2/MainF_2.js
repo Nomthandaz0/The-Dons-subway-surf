@@ -56,7 +56,36 @@ const createworld = () => {
     window.addEventListener('keyup',(e)=>{                                      // slowing down/stopping
         ground2.bindKey2(e.code, false);
     });
-};
+
+    const audioListener = new THREE.AudioListener();
+    camera.add( audioListener );
+    const ocean = new THREE.Audio( audioListener );
+
+    scene2.add( ocean );
+    const loader = new THREE.AudioLoader();
+
+    loader.load(
+        './ThemeSong.mp3',
+        function ( audioBuffer ) {
+            ocean.setBuffer( audioBuffer );
+            const music = document.getElementById("music");
+            music.addEventListener('click',() => {
+                ocean.resume();
+            });
+            ocean.play();
+        },
+
+        function ( xhr ) {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+
+        function ( err ) {
+            console.log( 'An error happened' );
+        }
+
+    );
+
+}
 
 const pauseGame = () => {
     gameIsPaused = true;
@@ -66,14 +95,17 @@ const pauseGame = () => {
     });
 }
 
+/**Light we used is directional light
+ */
 
+let dirLight;
 const initLights = () =>{
     const light = new THREE.HemisphereLight( 0xffffbb, 0x080820 );
     light.position.set(0,200,0);
     scene2.add( light );
 
     const shadowBound = 20;
-    const dirLight = new THREE.DirectionalLight( 0xffffff );
+    dirLight = new THREE.DirectionalLight( 0xffffff );
     dirLight.position.set(0,20,-25);
 
     dirLight.castShadow = true;
@@ -114,6 +146,12 @@ const animate = (time) => {
     if(gameIsPaused) return;
     controls.update();
     ground2.animateGround2(time);
+    /**
+     * getting light to move with the wheel
+     */
+    if(dirLight){
+        dirLight.position.z -= 0.05;
+    }
 
 }
 

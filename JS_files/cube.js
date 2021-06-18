@@ -1,24 +1,13 @@
 import *as THREE from '../Libra/three.module.js';
- import {CollisionHandler} from "./CollisionHandler.js";
-
 
 class cube{
 
     constructor() {
         this._group = new THREE.Group();
 
-        /*const cub = this._generateCube();
-        cub.scale.set(0.12, 0.2, 0.12);
-
-        cub.position.x += 0.3;
-        cub.position.z += -0.45;
-        cub.position.y -= 0.10;
-
-        this._group.add(cub);
-        this._group.castShadow = true;
-        this._group.receiveShadow = true*/
-
-
+        /**
+         *Duplication of cubes and giving each position
+         */
         for (let i=0; i<100; i++) {
 
         const cub = this._generateCube();
@@ -58,10 +47,12 @@ class cube{
         return new THREE.Mesh( geometry, material );
     }
 
+    /**
+     *function for getting cube
+     */
     get getCube(){
         return this._group;
     }
-
 
 }
 export {cube};
